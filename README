@@ -1,7 +1,21 @@
 Django Admin Action Email
 
-This is a simple admin action that allows a django staff user to filter a
-queryset on a model and use the data. The mail action is added
+This is a simple admin action that allows a django staff user to perform the
+following process.
+
+    1. Select a subset of records from any models with associated email
+       addresses. (eg. auth.User, profile, )
+    2. Redirect to a basic type a message form. (subject/text)
+    3. Email the related users. Email templates include the 'object' in context.
+
+    In this capacity it is best suited for ad hoc and impromptu messaging.
+
+Alternatives
+
+The emencia newsletter
+
+    https://github.com/Fantomas42/emencia-django-newsletter
+    - Lots more features, more complex and more dependencies
 
 for more information on django admin actions see:
 https://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/
