@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div id='container'>
+    <p>Sending email to {{emails|length}} addresses.</p>
+
+    <p>{{emails|slice:"0,8"|join:","}}...</p>
+
+    <form action="" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p><input type="submit" value="Continue &rarr;"0></p>
+    </form>
+</div>
+{% endblock %}

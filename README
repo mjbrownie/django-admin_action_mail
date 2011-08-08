@@ -1,0 +1,54 @@
+Django Admin Action Email
+
+This is a simple admin action that allows a django staff user to filter a
+queryset on a model and use the data. The mail action is added
+
+for more information on django admin actions see:
+https://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/
+
+Example code
+
+from admin_action_mail.actions import mail_action
+
+settings.py
+
+INSTALLED_APPS = (
+    ...
+    'admin_action_mail',
+)
+
+urls.py
+    ... 
+    (r"^admin_action_mail/", include('admin_action_mail.urls')),
+
+
+models.py
+class MyModel(models.Model):
+    ...
+    email   models.EmailField()
+    ...
+
+
+admin.py
+
+class MyModelAdmin(admin.ModelAdmin):
+
+    #Note all args are optional
+    actions = [
+        mail_action(
+            'description' : "Send Email to Related Users",
+            'email_dot_path' : 'email', # dot path string to email field (eg 'user.email')
+            'email_template_html' : 'admin_action_email/email.html'
+            'reply_to' : 'noreply@example.com' # defaults to request.user.email
+        )
+    ]
+
+
+TODO
+
+    * Add optional asynchronous backend eg. celeryd
+    * improve mail mergeability eg. extra_context
+    * get a decent 'preview mode' going.
+    * Improve exception handling
+    * optional avoid duplicate emails.
+    * Add some basic logging
