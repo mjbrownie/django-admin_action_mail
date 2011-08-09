@@ -22,7 +22,6 @@ https://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/
 
 Example code
 
-from admin_action_mail.actions import mail_action
 
 settings.py
 
@@ -44,6 +43,8 @@ class MyModel(models.Model):
 
 
 admin.py
+
+from admin_action_mail.actions import mail_action
 
 class MyModelAdmin(admin.ModelAdmin):
 
